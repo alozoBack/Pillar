@@ -37,9 +37,8 @@ go build
   ./mcpanel
   ```
 - Connect to panel
-  ```
-  ssh -p 22 127.0.0.1
-  ```
+  
+  <img alt="Demo panel" src="https://raw.githubusercontent.com/alozoBack/mcpanel/refs/heads/main/demo.gif" width="600" />
 
 ## License
 [![WTFPL](http://www.wtfpl.net/download/wtfpl-badge-3/)](https://github.com/alozoBack/mcpanel/raw/main/LICENSE)
