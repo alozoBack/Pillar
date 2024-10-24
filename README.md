@@ -26,15 +26,20 @@ It's a simple panel over ssh for Minecraft server with rcon, built entirely in G
 go build
 ```
 ### Run
-Import your server rcon password in export.
-Example with sh script:
-```bash
-#/bin/bash
-export HOSTRCON="localhost:25575"
-export PASSWORDRCON=""
-export ADMINCOMMAND=""
-./mcpanel
-```
+- Import your server rcon password in export.
+  
+  Example with sh script:
+  ```bash
+  #/bin/bash
+  export HOSTRCON="localhost:25575"
+  export PASSWORDRCON=""
+  export ADMINCOMMAND=""
+  ./mcpanel
+  ```
+- Connect to panel
+  ```
+  ssh -p 22 127.0.0.1
+  ```
 
 ## License
 [![WTFPL](http://www.wtfpl.net/download/wtfpl-badge-3/)](https://github.com/alozoBack/mcpanel/raw/main/LICENSE)
