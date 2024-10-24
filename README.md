@@ -21,6 +21,22 @@ It's a simple panel over ssh for Minecraft server with minecrafd, built entirely
     - [ ] Plugins managment
     - [ ] Config managment
 
+## Usage
+### Build
+```bash
+go build
+```
+### Run
+Import your server rcon password in export.
+Example with sh script:
+```bash
+#/bin/bash
+export HOSTRCON="localhost:25575"
+export PASSWORDRCON=""
+export ADMINCOMMAND=""
+./mcpanel
+```
+
 ## License
 [![WTFPL](http://www.wtfpl.net/download/wtfpl-badge-3/)](https://github.com/alozoBack/mcpanel/raw/main/LICENSE)
 
