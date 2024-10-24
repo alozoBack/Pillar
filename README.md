@@ -19,6 +19,8 @@ It's a simple panel over ssh for Minecraft server with minecrafd, built entirely
     - [ ] Plugins managment
     - [ ] Config managment
 
+## License
+[![WTFPL](http://www.wtfpl.net/download/wtfpl-badge-3/)](https://github.com/alozoBack/mcpanel/raw/main/LICENSE)
 
 ---
 
@@ -27,3 +29,4 @@ Build on [Charm](https://charm.sh).
 <a href="https://charm.sh/"><img alt="The Charm logo" src="https://stuff.charm.sh/charm-badge.jpg" width="400"></a>
 
 Charm热爱开源 • Charm loves open source
+
