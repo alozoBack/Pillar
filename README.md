@@ -1,5 +1,5 @@
 # MCPanel 
-It's a simple panel over ssh for Minecraft server with minecrafd, built entirely in Go with [charm_](https://charm.sh/).
+It's a simple panel over ssh for Minecraft server with rcon, built entirely in Go with [charm_](https://charm.sh/).
 
 
 > [!IMPORTANT]
@@ -9,14 +9,13 @@ It's a simple panel over ssh for Minecraft server with minecrafd, built entirely
 - [ ] Access control
 - [ ] Config file
 - [ ] Auto install
-- [ ] Add docker support
 - Server Managment
-    - [x] Start/Stop server ( some problem check issue )
+    - [x] top server 
     - [x] Execute commands 
-        - [ ] Check TPS
-        - [ ] Check players
-        - [ ] Give admin permission
-        - [ ] LuckPerms editor open ( need to use throuth rcon )
+        - [x] Check TPS
+        - [x] Check players
+        - [x] Give admin permission
+        - [ ] LuckPerms editor open ( idk how to do this )
     - [ ] Check logs
     - [ ] Plugins managment
     - [ ] Config managment
