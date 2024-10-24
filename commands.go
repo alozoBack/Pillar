@@ -34,7 +34,8 @@ func updateModel(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 					command := m.textInput.Value()
 					fmt.Printf("You entered: %s\n", command)
 
-					output := executeMinecraftCommand("cmd " + command)
+					formattedCommand := fmt.Sprintf("minecraftd cmd %s", command)
+					output := execCommand(formattedCommand)
 					m.response = fmt.Sprintf("Command: %s -> %s", command, output)
 				}
 			} else {
@@ -80,28 +81,28 @@ func executeAction(action string) string {
 	switch action {
 	case "Start server":
 		return executeMinecraftCommand("srt")
-		// doesn't implement 
+		// doesn't implement
 	case "LuckPerms editor open":
-		return executeMinecraftCommand("cmd lp editor")
+		return executeMinecraftCommand("cmd", "lp", "editor")
 
 	case "Stop server":
 		return executeMinecraftCommand("stp")
 
 	case "TPS":
-		return executeMinecraftCommand("cmd tps")
+		return executeMinecraftCommand("cmd", "tps")
 
 	case "Players":
-		return executeMinecraftCommand("cmd players")
+		return executeMinecraftCommand("cmd", "players")
 
 	case "Give admin permission":
-		return executeMinecraftCommand("cmd lp")
+		return executeMinecraftCommand("cmd", "lp")
 	}
 	return "Unkown action"
 }
 
 // Exec minecraftd commands
-func executeMinecraftCommand(command string) string {
-	cmd := exec.Command("minecraftd", command)
+func executeMinecraftCommand(command ...string) string {
+	cmd := exec.Command("minecraftd", command...)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		return fmt.Sprintf("Err in execute command: %s", err)
