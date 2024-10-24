@@ -1,5 +1,5 @@
 # MCPanel 
-It's a simple panel over ssh for Minecraft server with minecrafd, built entirely in Go.
+It's a simple panel over ssh for Minecraft server with minecrafd, built entirely in Go with [charm_](https://charm.sh/).
 
 > [!IMPORTANT]
 > MCPanel is currently under development.
@@ -18,3 +18,12 @@ It's a simple panel over ssh for Minecraft server with minecrafd, built entirely
     - [ ] Check logs
     - [ ] Plugins managment
     - [ ] Config managment
+
+
+---
+
+Build on [Charm](https://charm.sh).
+
+<a href="https://charm.sh/"><img alt="The Charm logo" src="https://stuff.charm.sh/charm-badge.jpg" width="400"></a>
+
+Charm热爱开源 • Charm loves open source
