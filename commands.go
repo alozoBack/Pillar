@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os/exec"
+	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/log"
+	"github.com/gorcon/rcon"
 )
 
 // idk what is this :D
@@ -34,12 +36,26 @@ func updateModel(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 					command := m.textInput.Value()
 					fmt.Printf("You entered: %s\n", command)
 
-					formattedCommand := fmt.Sprintf("minecraftd cmd %s", command)
-					output := execCommand(formattedCommand)
+					output := execMinecraftRCON(command)
 					m.response = fmt.Sprintf("Command: %s -> %s", command, output)
 				}
-			} else {
+			} else if selectedData[0] == "Give admin permission" {
+				adminGive := os.Getenv("ADMINCOMMAND")
+				if !m.showInput {
+					m.showInput = true
+					m.selectedRow = m.table.Cursor()
+					m.textInput.SetValue("")
+					m.textInput.Focus()
+					return m, nil
+				} else {
+					m.showInput = false
+					user := m.textInput.Value()
+					fmt.Printf("You entered: %s\n", user)
 
+					output := execMinecraftRCON(adminGive + " " + user)
+					m.response = fmt.Sprintf("permission for %s given %s", user, output)
+				}
+			} else {
 				response := executeAction(selectedData[0])
 				m.response = response
 			}
@@ -66,46 +82,41 @@ func updateModel(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, cmd
 }
 
-// exec default command
-func execCommand(command string) string {
-	cmd := exec.Command("sh", "-c", command)
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		return fmt.Sprintf("Err in execute command: %s", err)
-	}
-	return string(output)
-}
-
 // detector list select
 func executeAction(action string) string {
+
 	switch action {
-	case "Start server":
-		return executeMinecraftCommand("srt")
-		// doesn't implement
+	/*TODO
 	case "LuckPerms editor open":
-		return executeMinecraftCommand("cmd", "lp", "editor")
-
-	case "Stop server":
-		return executeMinecraftCommand("stp")
-
+		return execMinecraftRCON("lp editor")
+	*/
 	case "TPS":
-		return executeMinecraftCommand("cmd", "tps")
+		return execMinecraftRCON("tps")
 
 	case "Players":
-		return executeMinecraftCommand("cmd", "players")
+		return execMinecraftRCON("list")
 
-	case "Give admin permission":
-		return executeMinecraftCommand("cmd", "lp")
+	case "Stop server":
+		return execMinecraftRCON("stop")
 	}
+
 	return "Unkown action"
 }
 
-// Exec minecraftd commands
-func executeMinecraftCommand(command ...string) string {
-	cmd := exec.Command("minecraftd", command...)
-	output, err := cmd.CombinedOutput()
+func execMinecraftRCON(command string) string {
+	hostRcon := os.Getenv("HOSTRCON")
+	passwordRcon := os.Getenv("PASSWORDRCON")
+
+	conn, err := rcon.Dial(hostRcon, passwordRcon)
+	log.Info(hostRcon, passwordRcon)
+
 	if err != nil {
 		return fmt.Sprintf("Err in execute command: %s", err)
 	}
-	return string(output)
+	defer conn.Close()
+	response, err := conn.Execute(command)
+	if err != nil {
+		return fmt.Sprintf("Err in execute command: %s", err)
+	}
+	return response
 }

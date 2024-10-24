@@ -22,7 +22,7 @@ func NewModel() model {
 
 	rows := []table.Row{
 		{"Exec command"},
-		{"LuckPerms editor open"},
+		//{"LuckPerms editor open"},
 		{"Start server"},
 		{"Stop server"},
 		{"TPS"},

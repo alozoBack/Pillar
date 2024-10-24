@@ -12,7 +12,7 @@ import (
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/log"
+	w
 	"github.com/charmbracelet/ssh" // Используем правильный пакет SSH
 	"github.com/charmbracelet/wish"
 	"github.com/charmbracelet/wish/bubbletea"
