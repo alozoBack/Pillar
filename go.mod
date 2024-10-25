@@ -1,5 +1,4 @@
-module github.com/alozoBack/mcpanel
-
+module github.com/alozoBack/Pillar
 go 1.23.2
 
 require (
