@@ -1,9 +1,9 @@
-# MCPanel 
+# Pillar 
 It's a simple panel over ssh for Minecraft server with rcon, built entirely in Go with [charm_](https://charm.sh/).
 
 
 > [!IMPORTANT]
-> MCPanel is currently under development.
+> Pillar is currently under development.
 
 ## Features (WIP)
 - [ ] Access control
