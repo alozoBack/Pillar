@@ -10,7 +10,7 @@ It's a simple panel over ssh for Minecraft server with rcon, built entirely in G
 - [ ] Config file
 - [ ] Auto install
 - Server Managment
-    - [x] top server 
+    - [x] stop server 
     - [x] Execute commands 
         - [x] Check TPS
         - [x] Check players
