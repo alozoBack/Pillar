@@ -26,15 +26,13 @@ It's a simple panel over ssh for Minecraft server with rcon, built entirely in G
 go build
 ```
 ### Run
-- Import your server rcon password in export.
+- Import your server rcon password in env.
   
-  Example with sh script:
-  ```bash
-  #/bin/bash
-  export HOSTRCON="localhost:25575"
-  export PASSWORDRCON=""
-  export ADMINCOMMAND=""
-  ./Pillar
+  Example env file:
+  ```env
+  HOSTRCON="localhost:25575"
+  PASSWORDRCON=""
+  ADMINCOMMAND="lp user %user% permission set admin true" # %user% will be used as username in panel
   ```
 - Connect to panel
   

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/log"
@@ -34,8 +35,7 @@ func updateModel(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 
 					m.showInput = false
 					command := m.textInput.Value()
-					fmt.Printf("You entered: %s\n", command)
-
+					log.Info("EXECCOMMAND:" + command)
 					output := execMinecraftRCON(command)
 					m.response = fmt.Sprintf("Command: %s -> %s", command, output)
 				}
@@ -50,9 +50,9 @@ func updateModel(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 				} else {
 					m.showInput = false
 					user := m.textInput.Value()
-					fmt.Printf("You entered: %s\n", user)
-
-					output := execMinecraftRCON(adminGive + " " + user)
+					log.Info("adminGive:" + adminGive)
+					log.Info("PERMSCOMMAND:" + strings.Replace(adminGive, "%user%", user, -1))
+					output := execMinecraftRCON(strings.Replace(adminGive, "%user%", user, -1))
 					m.response = fmt.Sprintf("permission for %s given %s", user, output)
 				}
 			} else {
@@ -108,15 +108,15 @@ func execMinecraftRCON(command string) string {
 	passwordRcon := os.Getenv("PASSWORDRCON")
 
 	conn, err := rcon.Dial(hostRcon, passwordRcon)
-	log.Info(hostRcon, passwordRcon)
-
 	if err != nil {
-		return fmt.Sprintf("Err in execute command: %s", err)
+		log.Error(err)
+		return fmt.Sprintf("ERROR %s", err)
 	}
 	defer conn.Close()
 	response, err := conn.Execute(command)
 	if err != nil {
-		return fmt.Sprintf("Err in execute command: %s", err)
+		log.Error(err)
+		return fmt.Sprintf("ERROR %s", err)
 	}
 	return response
 }

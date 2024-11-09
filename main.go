@@ -10,9 +10,10 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"github.com/joho/godotenv"
 
 	tea "github.com/charmbracelet/bubbletea"
-	w
+	"github.com/charmbracelet/log"
 	"github.com/charmbracelet/ssh" // Используем правильный пакет SSH
 	"github.com/charmbracelet/wish"
 	"github.com/charmbracelet/wish/bubbletea"
@@ -24,6 +25,13 @@ const (
 	port    = "22"
 	keyPath = ".ssh/host_key" // Путь к SSH ключу
 )
+
+func init() {
+    // loads values from .env into the system
+    if err := godotenv.Load(); err != nil {
+        log.Print("No .env file found")
+    }
+}
 
 // Генерация SSH ключей, если их нет
 func generateHostKey() {
